@@ -1,0 +1,120 @@
+{
+  "$schema": "zed://schemas/settings",
+  "languages": {
+    "TypeScript": {
+      "language_servers": ["vtsls", "biome", "!typescript-language-server", "!eslint"],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "format_on_save": "on",
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      },
+      "prettier": {
+        "allowed": false
+      }
+    },
+    "TSX": {
+      "language_servers": ["vtsls", "biome", "!typescript-language-server", "!eslint"],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "format_on_save": "on",
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      },
+      "prettier": {
+        "allowed": false
+      }
+    },
+    "JavaScript": {
+      "language_servers": ["vtsls", "biome", "!typescript-language-server", "!eslint"],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "format_on_save": "on",
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      },
+      "prettier": {
+        "allowed": false
+      }
+    },
+    "JSX": {
+      "language_servers": ["vtsls", "biome", "!typescript-language-server", "!eslint"],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "format_on_save": "on",
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      },
+      "prettier": {
+        "allowed": false
+      }
+    },
+    "JSON": {
+      "language_servers": ["biome"],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JSONC": {
+      "language_servers": ["biome"],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "format_on_save": "on"
+    },
+    "CSS": {
+      "language_servers": ["biome"],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "format_on_save": "on"
+    }
+  },
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "vtsls": {
+          "autoUseWorkspaceTsdk": true
+        },
+        "typescript": {
+          "tsserver": {
+            "maxTsServerMemory": 8092
+          }
+        },
+        "javascript": {
+          "tsserver": {
+            "maxTsServerMemory": 8092
+          }
+        }
+      }
+    },
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    }
+  }
+}

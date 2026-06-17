@@ -1,0 +1,23 @@
+{
+  "name": "sunstack",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "type-check": "turbo run type-check",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/node": "^24.0.0",
+    "@vtsls/language-server": "^0.3.0",
+    "typescript": "^6.0.3"
+  },
+  "packageManager": "pnpm@11.0.0",
+  "engines": {
+    "node": ">=24.0.0 <25",
+    "pnpm": ">=11.0.0 <12"
+  }
+}
