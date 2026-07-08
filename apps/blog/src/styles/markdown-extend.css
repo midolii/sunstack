@@ -10,7 +10,7 @@
   font-weight: bold;
 }
 .custom-md blockquote.admonition .bdm-title:before {
-  content: ' ';
+  content: " ";
   display: inline-block;
   font-size: inherit;
   overflow: visible;
@@ -169,7 +169,7 @@ a.card-github .gc-stars:before,
 a.card-github .gc-forks:before,
 a.card-github .gc-license:before,
 a.card-github .github-logo:before {
-  content: ' ';
+  content: " ";
   display: inline-block;
   height: 1.3em;
   width: 1.3em;

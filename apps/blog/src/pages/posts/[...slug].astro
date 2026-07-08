@@ -1,49 +1,45 @@
 ---
-import { render } from "astro:content";
-import License from "@components/misc/License.astro";
-import Markdown from "@components/misc/Markdown.astro";
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
-import MainGridLayout from "@layouts/MainGridLayout.astro";
-import {
-	getPostAssetBasePath,
-	getPostSlug,
-	getSortedPosts,
-} from "@utils/content-utils";
-import { getPostUrlBySlug } from "@utils/url-utils";
-import { licenseConfig } from "@/config";
-import ImageWrapper from "../../components/misc/ImageWrapper.astro";
-import PostMetadata from "../../components/PostMeta.astro";
-import { profileConfig, siteConfig } from "../../config";
-import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import { render } from 'astro:content';
+import License from '@components/misc/License.astro';
+import Markdown from '@components/misc/Markdown.astro';
+import I18nKey from '@i18n/i18nKey';
+import { i18n } from '@i18n/translation';
+import MainGridLayout from '@layouts/MainGridLayout.astro';
+import { getPostAssetBasePath, getPostSlug, getSortedPosts } from '@utils/content-utils';
+import { getPostUrlBySlug } from '@utils/url-utils';
+import { licenseConfig } from '@/config';
+import ImageWrapper from '../../components/misc/ImageWrapper.astro';
+import PostMetadata from '../../components/PostMeta.astro';
+import { profileConfig, siteConfig } from '../../config';
+import { formatDateToYYYYMMDD } from '../../utils/date-utils';
 
 export async function getStaticPaths() {
-	const blogEntries = await getSortedPosts();
-	return blogEntries.map((entry) => ({
-		params: { slug: getPostSlug(entry) },
-		props: { entry },
-	}));
+  const blogEntries = await getSortedPosts();
+  return blogEntries.map((entry) => ({
+    params: { slug: getPostSlug(entry) },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props;
 const { Content, headings, remarkPluginFrontmatter } = await render(entry);
 
 const jsonLd = {
-	"@context": "https://schema.org",
-	"@type": "BlogPosting",
-	headline: entry.data.title,
-	description: entry.data.description || entry.data.title,
-	keywords: entry.data.tags,
-	author: {
-		"@type": "Person",
-		name: profileConfig.name,
-		url: Astro.site,
-	},
-	datePublished: formatDateToYYYYMMDD(entry.data.published),
-	inLanguage: entry.data.lang
-		? entry.data.lang.replace("_", "-")
-		: siteConfig.lang.replace("_", "-"),
-	// TODO include cover image here
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: entry.data.title,
+  description: entry.data.description || entry.data.title,
+  keywords: entry.data.tags,
+  author: {
+    '@type': 'Person',
+    name: profileConfig.name,
+    url: Astro.site,
+  },
+  datePublished: formatDateToYYYYMMDD(entry.data.published),
+  inLanguage: entry.data.lang
+    ? entry.data.lang.replace('_', '-')
+    : siteConfig.lang.replace('_', '-'),
+  // TODO include cover image here
 };
 ---
 
@@ -62,7 +58,7 @@ const jsonLd = {
     set:html={JSON.stringify(jsonLd)}
   />
   <div
-    class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4"
+    class="flex w-full rounded-(--radius-large) overflow-hidden relative mb-4"
   >
     <div
       id="post-container"
@@ -115,7 +111,7 @@ const jsonLd = {
           class="transition w-full block font-bold mb-3
                     text-3xl md:text-[2.25rem]/[2.75rem]
                     text-black/90 dark:text-white/90
-                    md:before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)]
+                    md:before:w-1 before:h-5 before:rounded-md before:bg-(--primary)
                     before:absolute before:top-[0.75rem] before:left-[-1.125rem]"
         >
           {entry.data.title}
@@ -133,7 +129,7 @@ const jsonLd = {
         />
         {
           !entry.data.image && (
-            <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5" />
+            <div class="border-(--line-divider) border-dashed border-b-[1px] mb-5" />
           )
         }
       </div>
@@ -181,7 +177,7 @@ const jsonLd = {
       {
         entry.data.nextSlug && (
           <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4">
-            <iconify-icon icon="material-symbols:chevron-left-rounded" class="text-[2rem] text-[var(--primary)]"></iconify-icon>
+            <iconify-icon icon="material-symbols:chevron-left-rounded" class="text-[2rem] text-(--primary)"></iconify-icon>
             <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
               {entry.data.nextTitle}
             </div>
@@ -203,7 +199,7 @@ const jsonLd = {
             <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
               {entry.data.prevTitle}
             </div>
-            <iconify-icon icon="material-symbols:chevron-right-rounded" class="text-[2rem] text-[var(--primary)]"></iconify-icon>
+            <iconify-icon icon="material-symbols:chevron-right-rounded" class="text-[2rem] text-(--primary)"></iconify-icon>
           </div>
         )
       }

@@ -1,11 +1,13 @@
 {
   "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
-  "root": false,
+  "root": true,
   "files": {
     "includes": [
-      "**/*.{js,ts,jsx,tsx,json,jsonc}",
+      "**/*.{js,mjs,cjs,ts,jsx,tsx,json,jsonc,astro,svelte,vue,css}",
       "!**/node_modules",
       "!**/dist",
+      "!**/.astro",
+      "!apps/blog/src/public",
       "!**/routeTree.gen.ts"
     ]
   },
@@ -57,5 +59,37 @@
       "allowComments": true,
       "allowTrailingCommas": true
     }
-  }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["apps/blog/**/*.{svelte,astro,vue}"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useConst": "off",
+            "useImportType": "off"
+          },
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["apps/blog/src/styles/markdown-extend.css"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDescendingSpecificity": "off"
+          }
+        }
+      }
+    }
+  ]
 }

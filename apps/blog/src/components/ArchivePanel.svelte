@@ -1,87 +1,85 @@
 <script lang="ts">
-import { onMount } from "svelte";
+import { onMount } from 'svelte';
 
-import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
-import { getPostUrlBySlug } from "../utils/url-utils";
+import I18nKey from '../i18n/i18nKey';
+import { i18n } from '../i18n/translation';
+import { getPostUrlBySlug } from '../utils/url-utils';
 
 export let tags: string[] = [];
 export let categories: string[] = [];
 export let sortedPosts: Post[] = [];
 
 const params = new URLSearchParams(window.location.search);
-tags = params.has("tag") ? params.getAll("tag") : [];
-categories = params.has("category") ? params.getAll("category") : [];
-const uncategorized = params.get("uncategorized");
+tags = params.has('tag') ? params.getAll('tag') : [];
+categories = params.has('category') ? params.getAll('category') : [];
+const uncategorized = params.get('uncategorized');
 
 interface Post {
-	slug: string;
-	data: {
-		title: string;
-		tags: string[];
-		category?: string | null;
-		published: Date;
-	};
+  slug: string;
+  data: {
+    title: string;
+    tags: string[];
+    category?: string | null;
+    published: Date;
+  };
 }
 
 interface Group {
-	year: number;
-	posts: Post[];
+  year: number;
+  posts: Post[];
 }
 
 let groups: Group[] = [];
 
 function formatDate(date: Date) {
-	const month = (date.getMonth() + 1).toString().padStart(2, "0");
-	const day = date.getDate().toString().padStart(2, "0");
-	return `${month}-${day}`;
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${month}-${day}`;
 }
 
 function formatTag(tagList: string[]) {
-	return tagList.map((t) => `#${t}`).join(" ");
+  return tagList.map((t) => `#${t}`).join(' ');
 }
 
 onMount(async () => {
-	let filteredPosts: Post[] = sortedPosts;
+  let filteredPosts: Post[] = sortedPosts;
 
-	if (tags.length > 0) {
-		filteredPosts = filteredPosts.filter(
-			(post) =>
-				Array.isArray(post.data.tags) &&
-				post.data.tags.some((tag) => tags.includes(tag)),
-		);
-	}
+  if (tags.length > 0) {
+    filteredPosts = filteredPosts.filter(
+      (post) => Array.isArray(post.data.tags) && post.data.tags.some((tag) => tags.includes(tag)),
+    );
+  }
 
-	if (categories.length > 0) {
-		filteredPosts = filteredPosts.filter(
-			(post) => post.data.category && categories.includes(post.data.category),
-		);
-	}
+  if (categories.length > 0) {
+    filteredPosts = filteredPosts.filter(
+      (post) => post.data.category && categories.includes(post.data.category),
+    );
+  }
 
-	if (uncategorized) {
-		filteredPosts = filteredPosts.filter((post) => !post.data.category);
-	}
+  if (uncategorized) {
+    filteredPosts = filteredPosts.filter((post) => !post.data.category);
+  }
 
-	const grouped = filteredPosts.reduce(
-		(acc, post) => {
-			const year = post.data.published.getFullYear();
-			if (!acc[year]) {
-				acc[year] = [];
-			}
-			acc[year].push(post);
-			return acc;
-		},
-		{} as Record<number, Post[]>,
-	);
+  const grouped = filteredPosts.reduce(
+    (acc, post) => {
+      const year = post.data.published.getFullYear();
+      if (!acc[year]) {
+        acc[year] = [];
+      }
+      acc[year].push(post);
+      return acc;
+    },
+    {} as Record<number, Post[]>,
+  );
 
-	const groupedPostsArray = Object.keys(grouped).map((yearStr) => ({
-		year: Number.parseInt(yearStr, 10),
-		posts: grouped[Number.parseInt(yearStr, 10)],
-	}));
+  const groupedPostsArray = Object.keys(grouped).map((yearStr) => ({
+    year: Number.parseInt(yearStr, 10),
+    posts: grouped[Number.parseInt(yearStr, 10)],
+  }));
 
-	groupedPostsArray.sort((a, b) => b.year - a.year);
+  groupedPostsArray.sort((a, b) => b.year - a.year);
 
-	groups = groupedPostsArray;
+  groups = groupedPostsArray;
 });
 </script>
 
@@ -94,7 +92,7 @@ onMount(async () => {
                 </div>
                 <div class="w-[15%] md:w-[10%]">
                     <div
-                            class="h-3 w-3 bg-none rounded-full outline outline-[var(--primary)] mx-auto
+                            class="h-3 w-3 bg-none rounded-full outline outline-(--primary) mx-auto
                   -outline-offset-[2px] z-50 outline-3"
                     ></div>
                 </div>
@@ -119,18 +117,18 @@ onMount(async () => {
                         <div class="w-[15%] md:w-[10%] relative dash-line h-full flex items-center">
                             <div
                                     class="transition-all mx-auto w-1 h-1 rounded group-hover:h-5
-                       bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-[var(--primary)]
+                       bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-(--primary)
                        outline outline-4 z-50
-                       outline-[var(--card-bg)]
-                       group-hover:outline-[var(--btn-plain-bg-hover)]
-                       group-active:outline-[var(--btn-plain-bg-active)]"
+                       outline-(--card-bg)
+                       group-hover:outline-(--btn-plain-bg-hover)
+                       group-active:outline-(--btn-plain-bg-active)"
                             ></div>
                         </div>
 
                         <!-- post title -->
                         <div
                                 class="w-[70%] md:max-w-[65%] md:w-[65%] text-left font-bold
-                     group-hover:translate-x-1 transition-all group-hover:text-[var(--primary)]
+                     group-hover:translate-x-1 transition-all group-hover:text-(--primary)
                      text-75 pr-8 whitespace-nowrap overflow-ellipsis overflow-hidden"
                         >
                             {post.data.title}

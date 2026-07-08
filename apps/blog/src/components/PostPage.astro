@@ -1,15 +1,15 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getPostSlug } from "@utils/content-utils";
-import { getPostUrlBySlug } from "@utils/url-utils";
-import PostCard from "./PostCard.astro";
+import type { CollectionEntry } from 'astro:content';
+import { getPostSlug } from '@utils/content-utils';
+import { getPostUrlBySlug } from '@utils/url-utils';
+import PostCard from './PostCard.astro';
 
 const { page } = Astro.props;
 
 let delay = 0;
 const interval = 50;
 ---
-<div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
+<div class="transition flex flex-col rounded-(--radius-large) bg-(--card-bg) py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
     {page.data.map((entry: CollectionEntry<"posts">) => (
         <PostCard
                 entry={entry}
