@@ -3,7 +3,9 @@ import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import { getCategoryUrl, getDir } from "@utils/url-utils.ts";
 
-export function getPostSlug(post: Pick<CollectionEntry<"posts">, "id">): string {
+export function getPostSlug(
+	post: Pick<CollectionEntry<"posts">, "id">,
+): string {
 	const slug = post.id.replace(/(^|\/)index$/, "").replace(/\/$/, "");
 	return slug || post.id;
 }

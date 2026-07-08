@@ -1,6 +1,5 @@
 ---
 import type { Page } from "astro";
-import { Icon } from "astro-icon/components";
 import { url } from "../../utils/url-utils";
 
 interface Props {
@@ -57,12 +56,12 @@ const getPageUrl = (p: number) => {
            {"disabled": page.url.prev == undefined}
        ]}
     >
-        <Icon name="material-symbols:chevron-left-rounded" class="text-[1.75rem]"></Icon>
+        <iconify-icon icon="material-symbols:chevron-left-rounded" class="text-[1.75rem]"></iconify-icon>
     </a>
     <div class="bg-[var(--card-bg)] flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold">
         {pages.map((p) => {
             if (p == HIDDEN)
-                return <Icon name="material-symbols:more-horiz" class="mx-1"/>;
+                return <iconify-icon icon="material-symbols:more-horiz" class="mx-1"></iconify-icon>;
             if (p == page.currentPage)
                 return <div class="h-11 w-11 rounded-lg bg-[var(--primary)] flex items-center justify-center
                     font-bold text-white dark:text-black/70"
@@ -79,6 +78,6 @@ const getPageUrl = (p: number) => {
            {"disabled": page.url.next == undefined}
        ]}
     >
-        <Icon name="material-symbols:chevron-right-rounded" class="text-[1.75rem]"></Icon>
+        <iconify-icon icon="material-symbols:chevron-right-rounded" class="text-[1.75rem]"></iconify-icon>
     </a>
 </div>
