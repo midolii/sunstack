@@ -19,13 +19,10 @@ import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
 import "katex/dist/katex.css";
-import "../styles/variables.styl";
+import "../styles/tokens.css";
 import "../styles/main.css";
-import "../styles/transition.css";
-import "../styles/scrollbar.css";
 import "../styles/markdown.css";
-import "../styles/markdown-extend.styl";
-import "../styles/expressive-code.css";
+import "../styles/markdown-extend.css";
 import "../styles/photoswipe.css";
 
 interface Props {
@@ -157,7 +154,7 @@ const bannerOffset =
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
 	</head>
-	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
+	<body class="min-h-screen bg-[var(--page-bg)] transition" class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
@@ -173,7 +170,7 @@ const bannerOffset =
 	'banner-height-home': `${BANNER_HEIGHT_HOME}vh`,
 	'banner-height': `${BANNER_HEIGHT}vh`,
 }}>
-@tailwind components;
+@reference "../styles/main.css";
 @layer components {
 	.enable-banner.is-home #banner-wrapper {
 		@apply h-[var(--banner-height-home)] translate-y-[var(--banner-height-extend)]
