@@ -1,0 +1,3 @@
+[submodule "apps/blog/src/content"]
+	path = apps/blog/src/content
+	url = git@github.com:midolii/blog-content.git
