@@ -148,7 +148,7 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
 		build: {
-			rollupOptions: {
+			rolldownOptions: {
 				onwarn(warning, warn) {
 					// temporarily suppress this warning
 					if (
