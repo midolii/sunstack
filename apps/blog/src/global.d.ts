@@ -1,9 +1,31 @@
 import type { AstroIntegration } from "@swup/astro";
 
+interface SwupLike {
+	hooks: {
+		on: (
+			event: "visit:start",
+			handler: (visit: { to: { url: string } }) => void,
+			options?: { before?: boolean },
+		) => void;
+		on: (
+			event: "link:click" | "content:replace" | "page:view" | "visit:end",
+			handler: () => void,
+			options?: { before?: boolean },
+		) => void;
+		on: (
+			event: string,
+			handler: (...args: unknown[]) => void,
+			options?: { before?: boolean },
+		) => void;
+	};
+}
+
 declare global {
 	interface Window {
 		// type from '@swup/astro' is incorrect
-		swup: AstroIntegration;
+		swup?: AstroIntegration & SwupLike;
+		onscroll: ((this: Window, ev: Event) => unknown) | null;
+		onresize: ((this: Window, ev: UIEvent) => unknown) | null;
 		pagefind: {
 			search: (query: string) => Promise<{
 				results: Array<{
