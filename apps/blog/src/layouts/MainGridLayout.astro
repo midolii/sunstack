@@ -46,17 +46,13 @@ const mainPanelTop = siteConfig.banner.enable
     class="z-50 pointer-events-none relative transition-all duration-700 max-w-(--page-width) px-0 md:px-4 mx-auto"
     class:list={[""]}
   >
-    <div
-      id="navbar-wrapper"
-      class="pointer-events-auto sticky top-0 transition-all"
-    >
+    <div id="navbar-wrapper" class="pointer-events-auto sticky top-0 transition-all">
       <Navbar />
     </div>
   </div>
 
   <!-- Banner -->
-  {
-    siteConfig.banner.enable && (
+  {siteConfig.banner.enable && (
       <div
         id="banner-wrapper"
         class={`absolute z-10 w-full transition duration-700 overflow-hidden`}
@@ -72,14 +68,10 @@ const mainPanelTop = siteConfig.banner.enable
           position={siteConfig.banner.position}
         />
       </div>
-    )
-  }
+    )}
 
   <!-- Main content -->
-  <div
-    class="absolute w-full z-30 pointer-events-none"
-    style={`top: ${mainPanelTop}`}
-  >
+  <div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
     <div class="relative max-w-(--page-width) mx-auto pointer-events-auto">
       <div
@@ -88,8 +80,7 @@ const mainPanelTop = siteConfig.banner.enable
     mx-auto gap-4 px-0 md:px-4"
       >
         <!-- Banner image credit -->
-        {
-          hasBannerCredit && (
+        {hasBannerCredit && (
             <a
               href={siteConfig.banner.credit.url}
               id="banner-credit"
@@ -117,8 +108,7 @@ const mainPanelTop = siteConfig.banner.enable
                 icon="fa6-solid:arrow-up-right-from-square"
               />
             </a>
-          )
-        }
+          )}
 
         <SideBar
           class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation"
@@ -152,8 +142,7 @@ const mainPanelTop = siteConfig.banner.enable
   <div class="absolute w-full z-0 hidden 2xl:block">
     <div class="relative max-w-(--page-width) mx-auto">
       <!-- TOC component -->
-      {
-        siteConfig.toc.enable && (
+      {siteConfig.toc.enable && (
           <div
             id="toc-wrapper"
             class:list={[
@@ -172,8 +161,7 @@ const mainPanelTop = siteConfig.banner.enable
               </div>
             </div>
           </div>
-        )
-      }
+        )}
 
       <!-- #toc needs to exist for Swup to work normally -->
       {!siteConfig.toc.enable && <div id="toc" />}

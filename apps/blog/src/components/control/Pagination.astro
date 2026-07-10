@@ -51,15 +51,22 @@ const getPageUrl = (p: number) => {
 ---
 
 <div class:list={[className, "flex flex-row gap-3 justify-center"]} style={style}>
-    <a href={page.url.prev || ""} aria-label={page.url.prev ? "Previous Page" : null}
-       class:list={["btn-card overflow-hidden rounded-lg text-(--primary) w-11 h-11",
+  <a
+    href={page.url.prev || ""}
+    aria-label={page.url.prev ? "Previous Page" : null}
+    class:list={["btn-card overflow-hidden rounded-lg text-(--primary) w-11 h-11",
            {"disabled": page.url.prev == undefined}
        ]}
-    >
-        <iconify-icon icon="material-symbols:chevron-left-rounded" class="text-[1.75rem]"></iconify-icon>
-    </a>
-    <div class="bg-(--card-bg) flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold">
-        {pages.map((p) => {
+  >
+    <iconify-icon
+      icon="material-symbols:chevron-left-rounded"
+      class="text-[1.75rem]"
+    ></iconify-icon>
+  </a>
+  <div
+    class="bg-(--card-bg) flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold"
+  >
+    {pages.map((p) => {
             if (p == HIDDEN)
                 return <iconify-icon icon="material-symbols:more-horiz" class="mx-1"></iconify-icon>;
             if (p == page.currentPage)
@@ -72,12 +79,17 @@ const getPageUrl = (p: number) => {
                 class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
             >{p}</a>
         })}
-    </div>
-    <a href={page.url.next || ""} aria-label={page.url.next ? "Next Page" : null}
-       class:list={["btn-card overflow-hidden rounded-lg text-(--primary) w-11 h-11",
+  </div>
+  <a
+    href={page.url.next || ""}
+    aria-label={page.url.next ? "Next Page" : null}
+    class:list={["btn-card overflow-hidden rounded-lg text-(--primary) w-11 h-11",
            {"disabled": page.url.next == undefined}
        ]}
-    >
-        <iconify-icon icon="material-symbols:chevron-right-rounded" class="text-[1.75rem]"></iconify-icon>
-    </a>
+  >
+    <iconify-icon
+      icon="material-symbols:chevron-right-rounded"
+      class="text-[1.75rem]"
+    ></iconify-icon>
+  </a>
 </div>

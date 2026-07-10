@@ -84,43 +84,39 @@ const bannerOffset = bannerOffsetByPosition[siteConfig.banner.position || 'cente
   <head>
     <title>{pageTitle}</title>
 
-    <meta charset="UTF-8" />
-    <meta name="description" content={description || pageTitle} />
-    <meta name="author" content={profileConfig.name} />
+    <meta charset="UTF-8">
+    <meta name="description" content={description || pageTitle}>
+    <meta name="author" content={profileConfig.name}>
 
-    <meta property="og:site_name" content={siteConfig.title} />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description || pageTitle} />
-    {
-      setOGTypeArticle ? (
+    <meta property="og:site_name" content={siteConfig.title}>
+    <meta property="og:url" content={Astro.url}>
+    <meta property="og:title" content={pageTitle}>
+    <meta property="og:description" content={description || pageTitle}>
+    {setOGTypeArticle ? (
         <meta property="og:type" content="article" />
       ) : (
         <meta property="og:type" content="website" />
-      )
-    }
+      )}
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={description || pageTitle} />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content={Astro.url}>
+    <meta name="twitter:title" content={pageTitle}>
+    <meta name="twitter:description" content={description || pageTitle}>
 
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    {
-      favicons.map((favicon) => (
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content={Astro.generator}>
+    {favicons.map((favicon) => (
         <link
           rel="icon"
           href={favicon.src.startsWith("/") ? url(favicon.src) : favicon.src}
           sizes={favicon.sizes}
           media={favicon.theme && `(prefers-color-scheme: ${favicon.theme})`}
         />
-      ))
-    }
+      ))}
 
     <!-- Set the theme before the page is rendered to avoid a flash -->
     <script>
-      import "iconify-icon";
+    import 'iconify-icon';
     </script>
     <script
       is:inline
@@ -134,36 +130,31 @@ const bannerOffset = bannerOffsetByPosition[siteConfig.banner.position || 'cente
         configHue,
       }}
     >
-      // Load the theme from local storage
-      const theme = localStorage.getItem("theme") || DEFAULT_THEME;
-      switch (theme) {
-        case LIGHT_MODE:
-          document.documentElement.classList.remove("dark");
-          break;
-        case DARK_MODE:
-          document.documentElement.classList.add("dark");
-          break;
-        case AUTO_MODE:
-          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            document.documentElement.classList.add("dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-          }
-      }
+    // Load the theme from local storage
+    const theme = localStorage.getItem('theme') || DEFAULT_THEME;
+    switch (theme) {
+      case LIGHT_MODE:
+        document.documentElement.classList.remove('dark');
+        break;
+      case DARK_MODE:
+        document.documentElement.classList.add('dark');
+        break;
+      case AUTO_MODE:
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+    }
 
-      // Load the hue from local storage
-      const hue = localStorage.getItem("hue") || configHue;
-      document.documentElement.style.setProperty("--hue", hue);
+    // Load the hue from local storage
+    const hue = localStorage.getItem('hue') || configHue;
+    document.documentElement.style.setProperty('--hue', hue);
 
-      // calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
-      let offset = Math.floor(
-        window.innerHeight * (BANNER_HEIGHT_EXTEND / 100),
-      );
-      offset = offset - (offset % 4);
-      document.documentElement.style.setProperty(
-        "--banner-height-extend",
-        `${offset}px`,
-      );
+    // calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
+    let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
+    offset = offset - (offset % 4);
+    document.documentElement.style.setProperty('--banner-height-extend', `${offset}px`);
     </script>
     <style
       define:vars={{
@@ -180,7 +171,7 @@ const bannerOffset = bannerOffsetByPosition[siteConfig.banner.position || 'cente
       type="application/rss+xml"
       title={profileConfig.name}
       href={`${Astro.site}rss.xml`}
-    />
+    >
   </head>
   <body
     class="min-h-screen bg-(--page-bg) transition"
@@ -203,37 +194,37 @@ const bannerOffset = bannerOffsetByPosition[siteConfig.banner.position || 'cente
     "banner-height": `${BANNER_HEIGHT}vh`,
   }}
 >
-  @reference "../styles/main.css";
-  @layer components {
-    .enable-banner.is-home #banner-wrapper {
-      @apply h-(--banner-height-home) translate-y-(--banner-height-extend);
-    }
-    .enable-banner #banner-wrapper {
-      @apply h-(--banner-height-home);
-    }
-
-    .enable-banner.is-home #banner {
-      @apply h-(--banner-height-home) translate-y-0;
-    }
-    .enable-banner #banner {
-      @apply h-(--banner-height-home) translate-y-(--bannerOffset);
-    }
-    .enable-banner.is-home #main-grid {
-      @apply translate-y-(--banner-height-extend);
-    }
-    .enable-banner #top-row {
-      @apply h-[calc(var(--banner-height-home)-4.5rem)] transition-all duration-300;
-    }
-    .enable-banner.is-home #sidebar-sticky {
-      @apply top-[calc(1rem-var(--banner-height-extend))];
-    }
-    .navbar-hidden {
-      @apply opacity-0 -translate-y-16;
-    }
+@reference "../styles/main.css";
+@layer components {
+  .enable-banner.is-home #banner-wrapper {
+    @apply h-(--banner-height-home) translate-y-(--banner-height-extend);
   }
+  .enable-banner #banner-wrapper {
+    @apply h-(--banner-height-home);
+  }
+
+  .enable-banner.is-home #banner {
+    @apply h-(--banner-height-home) translate-y-0;
+  }
+  .enable-banner #banner {
+    @apply h-(--banner-height-home) translate-y-(--bannerOffset);
+  }
+  .enable-banner.is-home #main-grid {
+    @apply translate-y-(--banner-height-extend);
+  }
+  .enable-banner #top-row {
+    @apply h-[calc(var(--banner-height-home)-4.5rem)] transition-all duration-300;
+  }
+  .enable-banner.is-home #sidebar-sticky {
+    @apply top-[calc(1rem-var(--banner-height-extend))];
+  }
+  .navbar-hidden {
+    @apply opacity-0 -translate-y-16;
+  }
+}
 </style>
 
 <script>
-  import "../scripts/layout-runtime";
-  import "../scripts/photoswipe";
+import '../scripts/layout-runtime';
+import '../scripts/photoswipe';
 </script>
