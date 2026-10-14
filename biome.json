@@ -53,6 +53,7 @@
   },
   "javascript": {
     "formatter": {
+      "expand": "never",
       "quoteStyle": "single",
       "jsxQuoteStyle": "double"
     }
